@@ -1,0 +1,220 @@
+Bài 1.1. Viết một chương trình C nhập vào 3 số nguyên. Thiết lập một con trỏ để lần lượt trỏ tới từng số nguyên và hiển thị kết quả giá trị tham chiếu ngược của con trỏ.
+
+//Bài1.1_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1 
+# include <stdio.h>
+int main(){
+    int x, y, z;
+    int* ptr;
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &x, &y, &z);
+    printf("\nThe three integers are:\n");
+    ptr = &x;
+    printf("x = %d\n", *ptr);
+    ptr = &y;
+    printf("y = %d\n", *ptr);
+    ptr = &z;
+    printf("z = %d", *ptr);
+    return 0;
+}
+
+*//
+Bài 1.3. Viết chương trình yêu cầu nhập giá trị cho 3 biến số nguyên x, y, z kiểu int. Sau đó sử dụng duy nhất một con trỏ để cộng giá trị của mỗi biến thêm 100.
+    //Bài1.3_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1
+#include <stdio.h>
+int main()
+{
+    int x, y, z;
+    int *ptr;
+    scanf("%d %d %d", &x, &y, &z);
+    printf("Here are the values of x, y, and z:\n");
+    printf("%d %d %d\n", x, y, z);
+ 
+    ptr = &x;
+    *ptr = *ptr+100;
+ 
+    ptr = &y;
+    *ptr = *ptr+100;
+ 
+    ptr = &z;
+    *ptr = *ptr+100;
+    printf("Once again, here are the values of x, y, and z:\n");
+    printf("%d %d %d\n", x, y, z);
+    return 0;
+}
+
+*//
+ Bài 1.4.Viết hàm countEven(int*, int) nhận một mảng số nguyên và kích thước của mảng, trả về số lượng số chẵn trong mảng???
+
+//Bai1.4_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int counteven(int* arr, int size){
+    int count = 0;
+ 
+    for(int i= 0; i < size; i++){
+        if(arr[i]%2==0) count++;
+    }
+ 
+    return count;
+}
+ 
+Bài 1.5. Viết hàm trả về con trỏ trỏ tới giá trị lớn nhất của một mảng các số double. Nếu mảng rỗng hãy trả về NULL.
+
+//Bai1.5_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1
+#include<bits/stdc++.h>
+using namespace std;
+ double* maximum(double* a, int size){
+    double *max;
+    max = a;
+    if (a==NULL) return NULL;
+    for(int i=1; i<size; i++){
+        if(a[i] > *max) max = &a[i];
+    }
+   
+     return max;
+}
+
+*//
+Bài 1.6. Viết hàm đảo ngược một mảng các số nguyên theo hai cách: dùng chỉ số và dùng con trỏ.
+
+//Bai1.6_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1
+#include <stdio.h>
+ void reversearray(int arr[], int size){
+
+    int l = 0, r = size - 1, tmp;
+    for ( int i = 0 ; i < size; i++){
+        if(l >= r) return;
+        else {
+        tmp = arr[l];
+        arr[l] = arr[r];
+        arr[r] = tmp;
+        ++l; --r;
+        }
+    }    
+}
+void ptr_reversearray(int *arr, int size){
+    int l = 0, r = size - 1, tmp;
+    int *p = arr ;
+     for ( int i = 0 ; i < size; i++){
+         if(l >= r) return;
+         else{
+             tmp = * (p+l);
+             *(p+l) = *(p+r);
+             *(p+r) = tmp;
+             ++l; --r;
+         }
+    }
+}
+
+*//
+Bài 1.7. Viết chương trình nhập vào một mảng các số nguyên với số lượng các phần tử nhập từ bàn phím. Sau đó sắp xếp mảng theo thứ tự tăng dần. Hiển thị danh sách mảng trước và sau khi sắp xếp.
+
+Yêu cầu chỉ sử dụng con trỏ để truy cập mảng, không truy cập theo index mảng.
+
+//Bai1.7_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1
+#include <stdio.h>
+int *a;
+int n, tmp;
+
+int main(){
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    a = new int[n];
+      for(int i = 0; i < n; i++)
+        scanf("%d", a + i);
+
+    printf("The input array is: \n");
+    for(int i = 0; i < n; i++)
+        printf("%d ", *(a + i));
+    printf("\n");
+    for(int i=0; i<n; i++)
+        for(int j=i; j<n; j++){
+            if(*(a+i) > *(a+j)){
+                int tmp;
+                tmp = *(a+i);
+                *(a+i) = *(a+j);
+                *(a+j) = tmp;
+            }
+        }
+
+    printf("The sorted array is: \n");
+    for(int i = 0; i < n; i++)
+        printf("%d ", *(a + i));
+    printf("\n");
+
+    delete [] a;
+    return 0;
+}
+
+*//
+Bài 1.8. Viết chương trình nhập vào một ma trận 2 chiều kích thước m*n với m và n nhập từ bàn phím. Sau đó đưa ra tổng các phần tử chẵn của ma trận đó.
+
+//Bai1.8_Tuần 9 
+//OUN PUNLEU_20220109_74466_2024.1
+#include <stdio.h>
+
+void allocate_mem(int ***mt, int m, int n){
+    *mt = new int *[m];
+    for(int i=0; i<m; i++){
+        (*mt)[i] = new int[n];
+    }
+ 
+}
+
+
+void input(int **mt, int m, int n){
+  
+    for(int i=0; i<m; i++)
+        for(int j=0; j<n; j++){
+            printf("mt[%d][%d] = ",i,j);
+            scanf("%d",&mt[i][j]);
+        }
+}
+
+void output(int **mt, int m, int n){
+  
+    for(int i=0; i<m; i++){
+        for(int j=0; j<n; j++)
+            printf("%d ",mt[i][j]);
+        printf("\n");
+    }
+
+}
+
+int process(int **mt, int m, int n){
+    int tong = 0;
+    for(int i=0; i<m; i++)
+        for(int j=0; j<n; j++){
+            if(mt[i][j]%2==0)
+                tong += mt[i][j];
+        }
+ 
+    return tong;
+}
+
+void free_mem(int **mt, int m, int n){
+    
+    for(int i=0; i<m; i++)
+        delete []mt[i];
+    delete []mt;
+}
+
+int main(){
+   
+    int m, n, **mt;
+    printf("Enter m, n = ");
+    scanf("%d%d", &m, &n);
+    allocate_mem(&mt, m, n);
+    input(mt, m, n);
+    output(mt, m, n);
+    printf("The sum of all even elements is %d", process(mt, m, n));
+    free_mem(mt, m, n);
+    return 0;
+}
